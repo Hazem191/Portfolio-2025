@@ -35,8 +35,16 @@
         }
 
         [data-theme="light"] nav {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.9) !important;
             border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+        }
+
+        [data-theme="light"] nav .nav-links a {
+            color: var(--light-gray) !important;
+        }
+
+        [data-theme="light"] nav .nav-links a:hover {
+            color: var(--accent) !important;
         }
 
         [data-theme="light"] .skill-category,
@@ -58,6 +66,7 @@
         [data-theme="light"] .social-links a {
             background: rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(0, 0, 0, 0.2);
+            transition: all 0.1s ease;
         }
 
         * {
@@ -581,6 +590,14 @@
             padding: 3rem;
             text-align: center;
             transition: transform 0.3s ease;
+            pointer-events: auto !important;
+            z-index: 10;
+            position: relative;
+            user-select: none;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .profile-card:hover {
@@ -665,9 +682,17 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 2rem;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            pointer-events: auto !important;
+            z-index: 10;
+            position: relative;
+            user-select: none;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .skill-category.animate {
@@ -732,11 +757,19 @@
             border-radius: 20px;
             padding: 3rem;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            opacity: 0;
-            transform: translateY(50px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
             max-width: 600px;
             margin: 0 auto;
+            pointer-events: auto !important;
+            z-index: 10;
+            position: relative;
+            user-select: none;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .project-card.animate {
@@ -790,6 +823,16 @@
             border-radius: 12px;
             font-size: 0.8rem;
             font-weight: 500;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: cascadeFade 0.5s ease forwards;
+        }
+
+        .tech-tag:hover {
+            background: var(--accent);
+            color: var(--navy);
+            transform: scale(1.05);
         }
 
         /* Contact Section */
@@ -812,9 +855,17 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 2rem;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            pointer-events: auto !important;
+            z-index: 10;
+            position: relative;
+            user-select: none;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .contact-item.animate {
@@ -842,7 +893,7 @@
         .contact-item a {
             color: var(--gray);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0s ease;
         }
 
         .contact-item a:hover {
@@ -856,6 +907,32 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
+            background: var(--navy);
+        }
+
+        /* Ensure footer content is above the animated background */
+        footer .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Light theme footer styles */
+        [data-theme="light"] footer {
+            background: var(--light-bg);
+            border-top: 1px solid rgba(0, 102, 204, 0.1);
+        }
+
+        [data-theme="light"] footer .social-links a {
+            background: rgba(0, 102, 204, 0.1);
+            border: 1px solid rgba(0, 102, 204, 0.2);
+            color: var(--light-gray);
+            transition: all 1ms linear;
+        }
+
+        [data-theme="light"] footer .social-links a:hover {
+            background: var(--accent);
+            color: var(--light-bg);
+            transform: translateY(-3px) !important;
         }
 
         footer::before {
@@ -866,7 +943,9 @@
             width: 200%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
-            animation: wave 3s linear infinite;
+            animation: wave 8s linear infinite;
+            z-index: 0;              /* keep the wave behind content */
+            pointer-events: none;     /* never block hover/clicks */
         }
 
         @keyframes wave {
@@ -892,13 +971,13 @@
             justify-content: center;
             color: var(--gray);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 1ms linear;
         }
 
         .social-links a:hover {
             background: var(--accent);
             color: var(--navy);
-            transform: translateY(-3px);
+            transform: translateY(-3px) !important;
         }
 
         /* Responsive Design */
@@ -939,7 +1018,7 @@
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .fade-in.visible {
@@ -961,9 +1040,17 @@
             border-radius: 16px;
             padding: 2rem;
             text-align: center;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            pointer-events: auto !important;
+            z-index: 10;
+            position: relative;
+            user-select: none;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .certificate-card.animate {
@@ -1073,8 +1160,8 @@
                 <div class="hero-visual">
                     <div class="profile-card">
                         <img src="https://i.ibb.co/hRVH89Dp/photo-2025-07-03-15-50-39.jpg" alt="Hazem Ibrahim" class="profile-photo">
-                        <h3>Full Stack Developer</h3>
-                        <p>Building scalable solutions</p>
+                        <h3>Back-End .NET Developer</h3>
+                        <p>Building scalable solutions with passion</p>
                     </div>
                 </div>
             </div>
@@ -1154,13 +1241,12 @@
                     <p>Comprehensive flight seat reservation system built with C#. Features real-time seat availability, booking management, and user-friendly interface for efficient airline operations.</p>
                     <div class="project-tech">
                         <span class="tech-tag">C#</span>
-                        <span class="tech-tag">SQL Server</span>
                         <span class="tech-tag">WinForms/WPF</span>
                         <span class="tech-tag">Database Design</span>
                     </div>
                 </div>
 
-                <div class="project-card fade-in">
+                                <div class="project-card fade-in">
                 <div class="project-icon">
                     <i class="fas fa-book"></i>
                 </div>
@@ -1169,10 +1255,10 @@
                 <div class="project-tech">
                     <span class="tech-tag">C#</span>
                     <span class="tech-tag">SQL Server</span>
-                    <span class="tech-tag">WinForms</span>
-                    <span class="tech-tag">Entity Framework</span>
+                        <span class="tech-tag">WinForms</span>
+                        <span class="tech-tag">Entity Framework</span>
+                    </div>
                 </div>
-            </div>
 
             </div>
         </div>
@@ -1275,7 +1361,7 @@
                         <h3>LinkedIn</h3>
                         <a href="https://www.linkedin.com/in/hazem-ibrahim-525a152b4/" target="_blank">LinkedIn Profile</a>
                     </div>
-                    <div class="contact-item fade-in">
+                    <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <h3>Phone</h3>
                         <a href="tel:+201060502411">+201060502411</a>
@@ -1310,16 +1396,33 @@
         function toggleTheme() {
             const body = document.body;
             const themeToggle = document.querySelector('.theme-toggle-icon');
+            const nav = document.querySelector('nav');
             const currentTheme = body.getAttribute('data-theme');
             
             if (currentTheme === 'light') {
                 body.setAttribute('data-theme', 'dark');
                 themeToggle.className = 'theme-toggle-icon fas fa-moon';
                 localStorage.setItem('theme', 'dark');
+                
+                // Update navbar for dark theme
+                if (window.scrollY > 100) {
+                    nav.style.background = 'rgba(10, 25, 47, 0.95)';
+                } else {
+                    nav.style.background = 'rgba(10, 25, 47, 0.9)';
+                }
+                nav.style.borderBottom = '1px solid rgba(100, 255, 218, 0.1)';
             } else {
                 body.setAttribute('data-theme', 'light');
                 themeToggle.className = 'theme-toggle-icon fas fa-sun';
                 localStorage.setItem('theme', 'light');
+                
+                // Update navbar for light theme
+                if (window.scrollY > 100) {
+                    nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.9)';
+                }
+                nav.style.borderBottom = '1px solid rgba(0, 102, 204, 0.1)';
             }
         }
 
@@ -1327,13 +1430,20 @@
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme') || 'dark';
             const themeToggle = document.querySelector('.theme-toggle-icon');
+            const nav = document.querySelector('nav');
             
             document.body.setAttribute('data-theme', savedTheme);
             
             if (savedTheme === 'light') {
                 themeToggle.className = 'theme-toggle-icon fas fa-sun';
+                // Set navbar for light theme
+                nav.style.background = 'rgba(255, 255, 255, 0.9)';
+                nav.style.borderBottom = '1px solid rgba(0, 102, 204, 0.1)';
             } else {
                 themeToggle.className = 'theme-toggle-icon fas fa-moon';
+                // Set navbar for dark theme
+                nav.style.background = 'rgba(10, 25, 47, 0.9)';
+                nav.style.borderBottom = '1px solid rgba(100, 255, 218, 0.1)';
             }
         });
 
@@ -1354,7 +1464,8 @@
         // Scroll animations
         const observerOptions = {
             threshold: 0.3,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -50px 0px',
+            root: null
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1369,33 +1480,44 @@
                         // Cascade animation for skill tags
                         const tags = entry.target.querySelectorAll('.skill-tag');
                         tags.forEach((tag, index) => {
-                            setTimeout(() => {
-                                tag.style.animationDelay = `${index * 0.1}s`;
-                                tag.style.opacity = '1';
-                                tag.style.animation = 'cascadeFade 0.5s ease forwards';
-                            }, index * 100);
+                            tag.style.animationDelay = `${index * 0.1}s`;
+                            tag.style.opacity = '1';
+                            tag.style.animation = 'cascadeFade 0.5s ease forwards';
                         });
                     }
                     
                     // Special handling for project cards
                     if (entry.target.classList.contains('project-card')) {
                         entry.target.classList.add('animate');
+
+                        // Cascade animation for project tech tags (match Skills behavior)
+                        const techTags = entry.target.querySelectorAll('.tech-tag');
+                        techTags.forEach((tag, index) => {
+                            tag.style.animationDelay = `${index * 0.1}s`;
+                            tag.style.opacity = '1';
+                            tag.style.animation = 'cascadeFade 0.5s ease forwards';
+                        });
                     }
                     
                     // Special handling for certificate cards
                     if (entry.target.classList.contains('certificate-card')) {
-                        setTimeout(() => {
-                            entry.target.classList.add('animate');
-                        }, Math.random() * 300);
+                        entry.target.classList.add('animate');
                     }
                     
                     // Special handling for contact items
                     if (entry.target.classList.contains('contact-item')) {
-                        setTimeout(() => {
-                            entry.target.classList.add('animate');
-                        }, Math.random() * 200);
+                        entry.target.classList.add('animate');
+                    }
+                } else {
+                    // Keep elements visible once they've been seen to prevent loss of interactivity
+                    // Only remove animate class if needed for performance
+                    if (entry.target.classList.contains('animate')) {
+                        // Keep the element interactive by maintaining visible class
                     }
                 }
+                
+                // Keep observing elements to maintain interactivity
+                // Removed unobserve to prevent loss of interactivity
             });
         }, observerOptions);
 
@@ -1417,14 +1539,18 @@
             if (window.scrollY > 100) {
                 if (currentTheme === 'light') {
                     nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                    nav.style.borderBottom = '1px solid rgba(0, 102, 204, 0.1)';
                 } else {
                     nav.style.background = 'rgba(10, 25, 47, 0.95)';
+                    nav.style.borderBottom = '1px solid rgba(100, 255, 218, 0.1)';
                 }
             } else {
                 if (currentTheme === 'light') {
                     nav.style.background = 'rgba(255, 255, 255, 0.9)';
+                    nav.style.borderBottom = '1px solid rgba(0, 102, 204, 0.1)';
                 } else {
                     nav.style.background = 'rgba(10, 25, 47, 0.9)';
+                    nav.style.borderBottom = '1px solid rgba(100, 255, 218, 0.1)';
                 }
             }
         });
@@ -1462,9 +1588,7 @@
             category.addEventListener('mouseenter', () => {
                 const tags = category.querySelectorAll('.skill-tag');
                 tags.forEach((tag, index) => {
-                    setTimeout(() => {
-                        tag.style.transform = 'scale(1.05)';
-                    }, index * 50);
+                    tag.style.transform = 'scale(1.05)';
                 });
             });
             
@@ -1476,29 +1600,11 @@
             });
         });
 
-        // Floating animation for profile card
+        // Floating animation for profile card - simplified to prevent interference
         const profileCard = document.querySelector('.profile-card');
         if (profileCard) {
-            let isHovered = false;
-            
-            profileCard.addEventListener('mouseenter', () => {
-                isHovered = true;
-            });
-            
-            profileCard.addEventListener('mouseleave', () => {
-                isHovered = false;
-            });
-            
-            setInterval(() => {
-                if (!isHovered) {
-                    profileCard.style.transform = 'translateY(-5px)';
-                    setTimeout(() => {
-                        if (!isHovered) {
-                            profileCard.style.transform = 'translateY(0px)';
-                        }
-                    }, 2000);
-                }
-            }, 4000);
+            // Removed complex setInterval animation to prevent interference with card interactions
+            // Simple hover effect only
         }
 
         // Typing effect for hero text (optional enhancement)
@@ -1520,14 +1626,14 @@
         `;
         document.head.appendChild(style);
 
-        // CTA button pulse effect
-        const ctaButton = document.querySelector('.cta-button');
-        setInterval(() => {
-            ctaButton.style.transform = 'scale(1.02)';
-            setTimeout(() => {
-                ctaButton.style.transform = '';
-            }, 200);
-        }, 3000);
+        // CTA button pulse effect - removed to prevent interference with card interactions
+        // const ctaButton = document.querySelector('.cta-button');
+        // setInterval(() => {
+        //     ctaButton.style.transform = 'scale(1.02)';
+        //     setTimeout(() => {
+        //         ctaButton.style.transform = '';
+        //     }, 200);
+        // }, 3000);
 
         // Skill tags stagger animation on scroll
         const skillCategories = document.querySelectorAll('.skill-category');
@@ -1539,26 +1645,17 @@
             });
         });
 
-        // Contact items enhanced animation
+        // Contact items enhanced animation - removed transition delay for instant response
         document.querySelectorAll('.contact-item').forEach((item, index) => {
-            item.style.transitionDelay = `${index * 0.1}s`;
+            // Removed transition delay to ensure 1ms response time
         });
 
         // Certificate cards enhanced animation
         document.querySelectorAll('.certificate-card').forEach((card, index) => {
-            card.style.transitionDelay = `${index * 0.15}s`;
+            // Removed transition delay to ensure consistent 1s timing
         });
 
-        // Social links hover effects
-        document.querySelectorAll('.social-links a').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                link.style.transform = 'translateY(-5px) rotate(5deg)';
-            });
-            
-            link.addEventListener('mouseleave', () => {
-                link.style.transform = '';
-            });
-        });
+        // Social links hover effects removed for instant response
 
         // Performance optimization: Throttle scroll events
         let ticking = false;
